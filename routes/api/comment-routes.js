@@ -1,14 +1,14 @@
 const router = require('express').Router();
 const { Comment } = require('../../models');
 
-router.get('/', (req,res) => {
+router.get('/', (req, res) => {
     Comment.findAll({
-        comment_text: req.body.comment_text,
+
     })
-    .then(dbPostData => res.json(dbPostData))
+    .then(dataRes => res.json(dataRes))
     .catch(err => {
         console.log(err);
-        res.status(500).json(err);
+        res.status(400).json(err);
     });
 });
 
@@ -18,29 +18,23 @@ router.post('/', (req, res) => {
         user_id: req.body.user_id,
         post_id: req.body.post_id
     })
-        .then(dbCommentData => res.json(dbCommentData))
-        .catch(err => {
-            console.log(err);
-            res.status(400).json(err);
-        });
+    .then(dbCommentData => res.json(dbCommentData))
+    .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+    });
 });
 
-router.delete('/:id', (req,res) => {
-    Post.destroy({
+router.delete('/:id', (req, res) => {
+    Comment.destroy({
         where: {
             id: req.params.id
         }
     })
-    .then(dbPostData => {
-        if(!dbPostData) {
-            res.status(404).json({message: 'No post found'});
-            return;
-        }
-        res.json(dbPostData);
-    })
-    .catch(err=>{
+    .then(resData => res.json(resData))
+    .catch(err => {
         console.log(err);
-        res.status(500).json(err);
+        res.status(400).json(err);
     });
 });
 
