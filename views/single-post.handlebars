@@ -23,15 +23,7 @@
 </form>
 {{/if}}
 
-<div class="comments">
-    {{#each post.comments}}
-    <section class="comment">
-        <div class="meta">
-            {{comment_text}}
-        </div>
-    </section>
-    {{/each}}
-</div>
+{{> comments post.comments}}
 {{#if loggedIn}}
 <script src="/javascripts/comment.js"></script>
 <script src="/javascripts/upvote.js"></script>
