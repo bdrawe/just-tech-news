@@ -8,11 +8,19 @@ Comment.init(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true,
+            autoIncrement: true
+        },
+        comment_text: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
         },
         user_id: {
             type: DataTypes.INTEGER,
-            references:{
+            allowNull: false,
+            references: {
                 model: 'user',
                 key: 'id'
             }
@@ -24,16 +32,7 @@ Comment.init(
                 model: 'post',
                 key: 'id'
             }
-        },
-        comment_text: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                // this means the password must be at least four characters long
-                len: [4]
-            }
         }
-
     },
     {
         sequelize,
@@ -43,4 +42,4 @@ Comment.init(
     }
 );
 
-module.exports = Comment
+module.exports = Comment;

@@ -8,9 +8,9 @@ Vote.init(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true,
+            autoIncrement: true
         },
-        user_id:{
+        user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -27,13 +27,13 @@ Vote.init(
             }
         }
     },
-        {
-         sequelize,
-         timestamps: false,
-         freezeTableName: true,
-         underscored: true,
-         modelName: 'vote'   
-        }
-    );
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'vote'
+    }
+);
 
 module.exports = Vote;
